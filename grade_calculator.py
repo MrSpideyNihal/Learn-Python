@@ -1,10 +1,19 @@
-"""Grade calculator."""
-import statistics
+"""Calculate and display a student's grade based on their percentage."""
+import math
 
-def calculate_grades(grades):
-    """Return average grade, median grade and number of students."""
-    return {'average': statistics.mean(grades), 'median': statistics.median(grades), 'count': len(grades)}
+def calculate_grade(percentage):
+    """Return the corresponding letter grade for the given percentage."""
+    if percentage >= 90:
+        return 'A'
+    elif percentage >= 80:
+        return 'B'
+    elif percentage >= 70:
+        return 'C'
+    elif percentage >= 60:
+        return 'D'
+    else:
+        return 'F'
 
 if __name__ == "__main__":
-    grades = [85, 90, 78, 92, 88, 76]
-    print(calculate_grades(grades))
+    x = int(input("Enter the student's percentage: "))
+    print(f"Grade: {calculate_grade(x)}")
