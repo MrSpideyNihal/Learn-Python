@@ -1,19 +1,20 @@
-"""Calculate and display a student's grade based on their percentage."""
-import math
+"""Calculate grade based on score."""
 
-def calculate_grade(percentage):
-    """Return the corresponding letter grade for the given percentage."""
-    if percentage >= 90:
+def calculate_grade(score):  # noqa: F811
+    if score < 0 or score > 100:
+        return 'Invalid score'
+    elif score >= 90:
         return 'A'
-    elif percentage >= 80:
+    elif score >= 80:
         return 'B'
-    elif percentage >= 70:
+    elif score >= 70:
         return 'C'
-    elif percentage >= 60:
+    elif score >= 60:
         return 'D'
     else:
         return 'F'
 
 if __name__ == "__main__":
-    x = int(input("Enter the student's percentage: "))
-    print(f"Grade: {calculate_grade(x)}")
+    scores = [85, 92, 78, 67, 95]
+    for score in scores:
+        print(f'Score: {score}, Grade: {calculate_grade(score)}')
