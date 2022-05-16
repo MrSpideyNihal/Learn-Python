@@ -1,33 +1,29 @@
-"""Simple inventory manager."""
-import collections
+"""Simple Inventory Manager."""
 
-def update_inventory(item, quantity):
-    """Update the inventory with the given item and quantity."""
-    global INVENTORY
-    if item in INVENTORY:
-        INVENTORY[item] += quantity
-    else:
-        INVENTORY[item] = quantity
+def add_item(item_name, quantity):
+    """Add an item to the inventory."""
+    global items
+    if item_name not in items:
+        items[item_name] = 0
+    items[item_name] += quantity
 
-INVENTORY = collections.defaultdict(int)
+def print_inventory():
+    """Print the current inventory."""
+    for item, quantity in items.items():
+        print(f"{item}: {quantity}")
 
+items = {}
 if __name__ == "__main__":
     while True:
-        print("1. Add item\n2. Remove item\n3. Check inventory")
+        print("1. Add item\n2. Print inventory\n3. Quit")
         choice = input("Choose an option: ")
-        if choice == '1':
-            item = input("Enter the item name: ")
-            quantity = int(input("Enter the quantity: "))
-            update_inventory(item, quantity)
-        elif choice == '2':
-            item = input("Enter the item name: ")
-            if item in INVENTORY:
-                del INVENTORY[item]
-                print(f"Item '{item}' removed.")
-            else:
-                print(f"Item '{item}' not found.")
-        elif choice == '3':
-            for item, quantity in INVENTORY.items():
-                print(f"{item}: {quantity}")
+        if choice == "1":
+            item_name = input("Enter item name: ")
+            quantity = int(input("Enter quantity: "))
+            add_item(item_name, quantity)
+        elif choice == "2":
+            print_inventory()
+        elif choice == "3":
+            break
         else:
-            print("Invalid option. Please try again.")
+            print("Invalid option. Try again.")
